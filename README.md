@@ -49,7 +49,7 @@ This Phase 1 implementation establishes the foundation for a broader Zero Trust 
 
 ### Documentation
 
-- [D490_Task2_Zero_Trust_IAM_Implementation.docx](D490_Task2_Zero_Trust_IAM_Implementation.docx) - Full project documentation
+- [Zero_Trust_IAM_Phase1_Proposal.docx](Zero_Trust_IAM_Phase1_Proposal.docx) - Full project documentation
 
 ### Tech Stack
 
