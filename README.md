@@ -1,3 +1,5 @@
+<img src="./repo-banner.svg" alt="Zero Trust Architecture: centralized IAM for 40,000 student identities" width="100%"/>
+
 # Zero Trust Architecture - Phase 1
 
 ## Designing and Validating a Centralized Identity and Access Management Solution for 40,000 Student Identities
