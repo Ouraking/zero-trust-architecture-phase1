@@ -24,6 +24,39 @@ A proof-of-concept IAM deployment featuring:
 - **IAM governance framework** aligned with NIST CSF 2.0 and ISO/IEC 27001:2022
 - **PowerShell bulk provisioning** template for scaling to 40,000 users
 
+### Architecture
+
+```mermaid
+%%{init: {'theme':'base','themeVariables':{'primaryColor':'#101A33','primaryTextColor':'#F2F6FF','primaryBorderColor':'#2DD4BF','lineColor':'#8B97B8','secondaryColor':'#0D1428','tertiaryColor':'#0A0F1E','clusterBkg':'#0A0F1E','clusterBorder':'#24335C','edgeLabelBackground':'#0D1428','fontSize':'14px'}}}%%
+flowchart TB
+    S["Student sign-in attempt"] --> ENT["Microsoft Entra ID<br/>central directory"]
+    T1["PowerShell bulk provisioning"] --> T2["25 identities<br/>proof of concept"]
+    T2 --> T3["40,000 identities<br/>staged rollout"]
+    T3 -.->|"populates"| ENT
+
+    ENT --> CA{"Conditional Access<br/>policy evaluation"}
+
+    subgraph POL["4 Conditional Access policies, 100% enforcement in testing"]
+        direction LR
+        P1["Require MFA<br/>for all users"]
+        P2["Block legacy<br/>authentication"]
+        P3["Require compliant<br/>device"]
+        P4["Session controls<br/>for risky sign-in"]
+    end
+
+    CA --> POL
+    POL --> D{"All conditions<br/>satisfied?"}
+    D -->|Yes| OK["Access granted to<br/>institutional resources"]
+    D -->|No| BLOCK["Access blocked<br/>and logged"]
+
+    classDef ok fill:#0D1428,stroke:#2DD4BF,stroke-width:2px,color:#AEE8DE
+    classDef blocked fill:#0D1428,stroke:#F5B942,stroke-width:2px,color:#F5B942
+    classDef core fill:#101A33,stroke:#2DD4BF,stroke-width:2px,color:#F2F6FF
+    class OK ok
+    class BLOCK blocked
+    class ENT,CA core
+```
+
 ### Frameworks & Standards
 
 - NIST SP 800-207 (Zero Trust Architecture)
